@@ -10,7 +10,6 @@ import { SearchService } from '../services/search.service';
 export class ResultsComponent implements OnInit {
   searchResults: SearchResults|null = null;
   hits: HitsEntity[]|null|undefined = [];
-  str: string = '';
 
   constructor(private searchService: SearchService) { }
 
@@ -18,11 +17,7 @@ export class ResultsComponent implements OnInit {
     this.searchResults = this.searchService.searchResults;
 
     if(this.searchResults){
-      this.hits = this.searchResults.hits;
+      this.hits = this.searchResults.hits??[];
     }
-    
-    this.str = JSON.stringify(this.searchResults)
   }
-
-
 }

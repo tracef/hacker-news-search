@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
   doSearch() {
     const query: string = this.searchValue;
     let isValid = true;
-    
+
     if (query) {
       this.searchService.angoliaAPI(query).subscribe((results: SearchResults) => {
         if(results){
@@ -46,6 +46,6 @@ export class SearchComponent implements OnInit {
   }
 
   clearValidator(){
-    this.searchForm.get('searchInput')?.clearValidators();
+    this.searchForm.get('searchInput')!.clearValidators();
   }
 }

@@ -6,13 +6,14 @@ import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { path: '', component: SearchComponent },
-  { path: 'search', redirectTo:'' },
+  { path: 'search', redirectTo: '' },
   { path: 'results', component: ResultsComponent },
-  { path: 'history', component: HistoryComponent }
+  { path: 'history', component: HistoryComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true, preloadingStrategy: PreloadAllModules})],
+  imports: [RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

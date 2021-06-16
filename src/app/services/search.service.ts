@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { SearchResults } from 'src/interfaces/SearchResults';
 
 @Injectable({
@@ -16,7 +17,15 @@ export class SearchService {
   }
 
   angoliaAPI(query: string): Observable<any> {
-    return this.http.get(`http://hn.algolia.com/api/v1/search?query=${query}`);
+    return this.http.get(`http://hn.algolia.com/api/v1/search?query=${query}`)
+      .pipe(
+        map(response=>{
+          return response;
+        }),
+        catchError(error=>{
+          return throwError(error);
+        })
+      );
   }
 
   saveHistory(query: string) {

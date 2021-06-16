@@ -23,7 +23,6 @@ export class SearchComponent implements OnInit {
 
   doSearch() {
     const query: string = this.searchValue;
-    let isValid = true;
 
     if (query) {
       this.searchService.angoliaAPI(query).subscribe(

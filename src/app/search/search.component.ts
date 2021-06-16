@@ -28,13 +28,11 @@ export class SearchComponent implements OnInit {
     if (query) {
       this.searchService.angoliaAPI(query).subscribe(
         (results: SearchResults) => {
-            console.log('results', results)
             this.searchService.saveHistory(query);
             this.searchService.saveSearchResults(results);
             this.router.navigate(['/results'])
         },
         (error=>{
-          console.log(error)
           this.searchForm.get('searchInput')!.setErrors({'invalid': true})
         })
       )

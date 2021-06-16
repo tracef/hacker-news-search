@@ -5,8 +5,8 @@ import { ResultsComponent } from './results/results.component';
 import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
-  { path: '', component: SearchComponent },
-  { path: 'search', redirectTo: '' },
+  { path: '', redirectTo: 'search', pathMatch: 'full', },
+  { path: 'search',  component: SearchComponent },
   { path: 'results', component: ResultsComponent },
   { path: 'history', component: HistoryComponent },
   { path: '**', redirectTo: '' }

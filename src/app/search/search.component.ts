@@ -12,7 +12,6 @@ import { SearchService } from '../services/search.service';
 
 export class SearchComponent implements OnInit {
   searchForm: FormGroup = this.formBuilder.group({ searchInput: [''] });
-  invalid: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private searchService: SearchService, private router: Router) { }
 
@@ -27,15 +26,16 @@ export class SearchComponent implements OnInit {
     let isValid = true;
 
     if (query) {
-      this.searchService.angoliaAPI(query).subscribe((results: SearchResults) => {
-        if(results){
-          this.searchService.saveHistory(query);
-          this.searchService.saveSearchResults(results);
-          this.router.navigate(['/results'])
-        }else{
+      this.searchService.angoliaAPI(query).subscribe(
+        (results: SearchResults) => {
+            this.searchService.saveHistory(query);
+            this.searchService.saveSearchResults(results);
+            this.router.navigate(['/results'])
+        },
+        (error=>{
           isValid = false;
-        }
-      })
+        })
+      )
     }else{
       isValid = false;
     }
